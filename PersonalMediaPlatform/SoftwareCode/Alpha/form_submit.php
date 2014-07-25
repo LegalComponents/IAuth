@@ -123,7 +123,9 @@ require 'connect.php';
 
 $postTitle = mysql_real_escape_string($postTitle);
 $postURL   = mysql_real_escape_string($postURL);
-mysql_query("INSERT INTO ...(...) VALUES(...)");
+
+//Add a new post entry into the database
+mysql_query("INSERT INTO posts(post_title, post_url) VALUES('$postTitle', '$postURL')");
 
 /*
  * Redirect to the WordPress post

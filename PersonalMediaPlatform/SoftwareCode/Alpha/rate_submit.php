@@ -37,20 +37,21 @@ $user_id = $_POST['user'];
 define('INCLUDE_CHECK',true);
 require 'connect.php';
 
-// Find the database identifier for the URL
-$url    = mysql_real_escape_string($url);
-$result = mysql_fetch_assoc(mysql_query("
-			 SELECT `access_token`
-			 FROM `flashcard`
-			 WHERE `url` = '$url'));
+// Find the database post identifier for the URL
+$url     = mysql_real_escape_string($url);
+$result  = mysql_fetch_assoc(mysql_query("
+			 SELECT post_id
+			 FROM post
+			 WHERE post_url = '$url'));
 if ($result)
 {
-	$row_id  = $result['row_id' ];
+	$post_id  = $result['post_id'];
+	$round    = 0;
+	$rating   = 0;
 
 	// Create the new row
-	$user_id = mysql_real_escape_string($user_id);
-	mysql_query("INSERT INTO ...(...) VALUES(...)");
-
+	$user_id = (int)mysql_real_escape_string($user_id);
+	mysql_query("INSERT INTO rating(post_id, user_id, round, rating) VALUES($post_id, $user_id, $round, $rating)");
 }
 else // Invalid URL
 {
