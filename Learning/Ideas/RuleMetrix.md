@@ -1,3 +1,5 @@
+* The following excerpt was authored by Dazza Greenwood for inclusion in a report on ways to update the Kansas Business Center website. [see: http://kansasbusinesscenter.com and https://github.com/kansasbusinesscenter/report]
+
 # Begin with the End in Mind: Establishing the Mission and Success Metrics
 
 The INK Board and potentially any stakeholder steering group it may develop to help steward re-design of the Kansas Business Center must establish the authoritative vision, mission, goals and objectives that will guide architecture and operations going forward.
