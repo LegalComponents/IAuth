@@ -22,7 +22,7 @@ Sam will dedicate 2-3 hours per week, excluding the following periods around exa
 
 **Project status:**
 
-Link:
+Link: https://github.com/HumanDynamics/LegalPhysics/wiki/Sam's-Dev-Status-Updates-for-Personal-Media-Platform-Development
 
 **LegalPackageManagement**
 
