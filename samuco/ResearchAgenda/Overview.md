@@ -4,16 +4,24 @@ This is the overview of Sam's research plan as externally placed intern with Daz
 
 Sam will dedicate 2-3 hours per week, excluding the following periods around examination:
 
->September 1 - September 15
+>September 1 - September 15  
+
 >October 19 - November 22
 
 
 # Project and Skills:
 
-LegalHackathon automation
+* LegalHackathon automation
 
-LegalPackageManagement
+Description of project:
 
+Project aims for Sam:
+
+Project status: 
+
+* LegalPackageManagement
+
+TBD
 
 
 # Academic Work
