@@ -11,11 +11,15 @@ Sam will dedicate 2-3 hours per week, excluding the following periods around exa
 
 # Project and Skills:
 
-* LegalHackathon automation
+## LegalHackathon automation
 
 Description of project:
 
-Project aims for Sam:
+Skills and Project aims for Sam:
+
+* Learning how to use REST APIs to integrate several services together in order to enable very large scale participation and collaborations along the lines described at: http://ecitizen.mit.edu/FlowScape
+
+* Learning how to apply the above design pattern to enable richer engagement in Legal Hackathons and academic classes.
 
 Project status: 
 
