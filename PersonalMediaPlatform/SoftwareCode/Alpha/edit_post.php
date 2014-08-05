@@ -33,10 +33,14 @@ $access_key = '';
  * Post parameters
  */
 
+//the identifier for the existing post
+$postId 		= $_POST['id']; 		
+
+//modified parameters
 $postTitle      = $_POST['title'];      // html
 $postContent    = $_POST['content'];    // html
 $postTags       = $_POST['tags'];       // string
-$postCategories = 'Proposed Project';   // string
+$postCategories = 'Active Project'; // string
 
 // Extra
 // See https://developer.wordpress.com/docs/api/1/post/sites/%24site/posts/new/
@@ -103,7 +107,7 @@ $options  = array (
 $site_url = 'a2j.legalhackathon.org';
 $context  = stream_context_create( $options );
 $response = file_get_contents(
-   'https://public-api.wordpress.com/rest/v1/sites/'.$site_url.'/posts/new/',
+   'https://public-api.wordpress.com/rest/v1/sites/'.$site_url.'/posts/$postId',
    false,
    $context
 );
