@@ -8,6 +8,7 @@ Sam will dedicate 2-3 hours per week, excluding the following periods around exa
 
 >October 19 - November 22
 
+We will use GitHub issues to communicate and work remotely mostly.
 
 # Project and Skills:
 
@@ -19,6 +20,8 @@ Sam will dedicate 2-3 hours per week, excluding the following periods around exa
 * Learning how to use REST APIs to integrate several services together in order to enable very large scale participation and collaborations along the lines described at: http://ecitizen.mit.edu/FlowScape
 
 * Learning how to apply the above design pattern to enable richer engagement in Legal Hackathons and academic classes.
+
+* September 1 to create instance of the PMP ready for class.
 
 **Project status:**
 
