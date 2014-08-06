@@ -1,8 +1,8 @@
 
 
 # Great links:
-* GitHub Trending
-* Using Google Big Query
+* GitHub Trending:  http://www.fastcolabs.com/3015178/the-top-10-hottest-github-projects-right-now
+* GitHub API: 
 
 
 # Great articles:
