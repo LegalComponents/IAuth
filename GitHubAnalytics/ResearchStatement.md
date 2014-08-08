@@ -9,3 +9,4 @@ I'm interested to go through the GitHub API and formulate a research plan.  Base
 #Intro#
 #Description of the Data Sets#
 #Data Analysis Methodology#
+#Value Hypothesis#
