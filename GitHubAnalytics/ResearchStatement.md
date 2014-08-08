@@ -7,12 +7,29 @@ To get us started, below is the substantive content from the email I sent on Aug
 I'm interested to go through the GitHub API and formulate a research plan.  Based on that, I'll get access to the data (as much as I can) and ask Sandy about the best ways to collaborate.  If nothing else, the exercise of running through the API and testing some stuff will be educational, enriching and creatively stimulating.  And really fun!"
 
 #Intro#
+
 #Description of the Data Sets#
 
+Users
+Are the basic description of a person in GitHub.
+
+Files
+These are the working units. A file can be made and modified by a single or several users. Every time a user changes a file an entry is produced in the file history.
+
+Projects
+Projects are compound by users and files. Usually are simple repositories where all the files related to the project are kept.
+
+Organizations
+An organization is the entity that creates the projects and manage the teams.
 
 <script src="http://www.stathat.com/javascripts/embed.js"></script>
 <script>StatHatEmbed.render({s1: 'lxoC', w: 760, h: 235});</script>
 <a href="http://www.stathat.com/stats/lxoC">Analyze on StatHat</a>
 
 #Data Analysis Methodology#
+
+In order to measure productivity we must indentify the set of variables from the datasets that we will best describe what we understand by this concept. Defining productivity itself is not a trivial issue. One one hand there is the capacity of teams to produce a desired result, called efficacy; and on the other hand there is the capacity of a teams to reach their set of goals using the least amoung of resources, which is called efficiency. However, productivity can also be understood as producing the larger amount of contents in the least ammount of time.
+
+Once we define what we will understand as productivity, we may then look for a way to characterize teams, their structure and working dynamics. Teams are compound by users, and these have a set of properties which can give additional information about the teams functioning, such as background or skills. We can characterize teams according to their participants and the way they work together. Using social network analysis we can identify a set of properties, combining the mixing patterns and network dynamics, to find relationships between the team structure and the resulting productivity.
+
 #Value Hypothesis#
