@@ -1,3 +1,3 @@
 My email to Michele from transactiveDB:
 
-exscale.info/papers/TransactiveDB.pdf
+<href="exscale.info/papers/TransactiveDB.pdf">TransactiveDB Paper<a/>
