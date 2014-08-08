@@ -10,6 +10,8 @@ I'm interested to go through the GitHub API and formulate a research plan.  Base
 
 #Description of the Data Sets#
 
+GitHub datasets are compound by a set of entities that are related to each other.
+
 - Users: Are the basic description of a person in GitHub.
 
 - Files: These are the working units. A file can be made and modified by a single or several users. Every time a user changes a file an entry is produced in the file history.
