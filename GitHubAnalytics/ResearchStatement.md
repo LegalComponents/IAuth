@@ -8,5 +8,11 @@ I'm interested to go through the GitHub API and formulate a research plan.  Base
 
 #Intro#
 #Description of the Data Sets#
+
+
+<script src="http://www.stathat.com/javascripts/embed.js"></script>
+<script>StatHatEmbed.render({s1: 'lxoC', w: 760, h: 235});</script>
+<a href="http://www.stathat.com/stats/lxoC">Analyze on StatHat</a>
+
 #Data Analysis Methodology#
 #Value Hypothesis#
