@@ -8,6 +8,11 @@ I'm interested to go through the GitHub API and formulate a research plan.  Base
 
 #Intro#
 
+Understanding the propagation of skills is crucial to design better human systems like work teams.  The analysis of data exhaust from human activity can reveal patterns across different scales, displaying the complex nature of our society. Here we propose to analyze the relationship between team dynamics and productivity, tracking the propagation of knowledge and skill with reference to the collaborative developers' site, GitHub. 
+
+The GitHub's ticketing mechanism, issues, has the potential to unveil processes of team identity, rundown and solve errors. Its patterns could be compared to the really rough and apparently incorrect estimation of troubleshooting by software developers; and build descriptors in new highly dimensional ways.
+
+
 #Description of the Data Sets#
 
 GitHub datasets are compound by a set of entities that are related to each other.
