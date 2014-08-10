@@ -8,14 +8,13 @@ I'm interested to go through the GitHub API and formulate a research plan.  Base
 
 #Intro#
 
-Understanding the propagation of skills is crucial to design better human systems like work teams.  The analysis of data exhaust from human activity can reveal patterns across different scales, displaying the complex nature of our society. Here we propose to analyze the relationship between team dynamics and productivity, tracking the propagation of knowledge and skill with reference to the collaborative developers' site, GitHub. 
+Understanding the propagation of skills is crucial to design better human systems, such as work teams. Here we propose to analyze the relationship between team dynamics and the resulting productivity by means of tracking the team building and functioning through the propagation of knowledge. We will analyze the collective activity in the collaborative developers' site, GitHub. 
 
-The GitHub's ticketing mechanism, issues, has the potential to unveil processes of team identity, rundown and solve errors. Its patterns could be compared to the really rough and apparently incorrect estimation of troubleshooting by software developers; and build descriptors in new highly dimensional ways.
-
+The analysis of data exhaust from human activity can reveal patterns across different scales, displaying the complex nature of our society. The GitHub's ticketing mechanism, issues, has the potential to unveil processes of team identity, rundown and solve errors. The properties and characteristics of these tickets could be compared to the really rough and apparently incorrect estimation of troubleshooting by software developers. By these process we will build descriptors in new highly dimensional ways whose patterns would by analyzed by computational social science and complexity science methods. 
 
 #Description of the Data Sets#
 
-GitHub datasets are compound by a set of entities that are related to each other.
+GitHub datasets are compound by a set of entities that are related to each other. These entities could be users, projects, tickets, or any other functionality of the web application. 
 
 - Users: Are the basic description of a person in GitHub. It provides personal information, background and activity.
 
