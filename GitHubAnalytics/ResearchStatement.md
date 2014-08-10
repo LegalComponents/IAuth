@@ -8,7 +8,7 @@ I'm interested to go through the GitHub API and formulate a research plan.  Base
 
 #Intro#
 
-Understanding the propagation of skills is crucial to design better human systems, such as work teams. Here we propose to analyze the relationship between working dynamics and resulting productivity in a team of developers. We propose to understand the team building and functioning processes tracking the propagation of knowledge durng the product development. We will analyze the collective activity in the online site GitHub where users build files and develop codes and applications collaboratively.
+Understanding the propagation of skills is crucial to design better human systems, such as work teams. Here we propose to analyze the relationship between working dynamics and resulting productivity in teams of workers. We propose to understand the team building and functioning processes tracking the propagation of knowledge during the product development. To this end, we will analyze the collective activity in the online site GitHub. Here users build files and develop codes collaboratively, opening posibility to understand the nature of productive teams.
 
 The analysis of data exhaust from human activity can reveal patterns across different scales, displaying the complex nature of our society. The GitHub's ticketing mechanism, issues, has the potential to unveil processes of team identity, rundown and solve errors. The properties and characteristics of these tickets could be compared to the really rough and apparently incorrect estimation of troubleshooting by software developers. By these process we will build descriptors in new highly dimensional ways whose patterns would by analyzed by computational social science and complexity science methods. 
 
