@@ -21,7 +21,7 @@ Transactive DB functions as an automated and iterative system that can push quer
 
 **Intro**
 
-Overall, I think it's great to reach out to more potential partners and see what if any fit there may be.  The worst that happens is probably just a little wasted time but even in that case we all learn more about other research and researchers which may be a good fit for future projects.  
+Overall, I think it's great to reach out to more potential partners and see what if any fit there may be.  The worst that happens is probably just a little wasted time but even in that case we all learn more about other research and researchers which may be a good fit for future projects.  Members of this collaboration team are invited to share questions, comments, etc on [Issue #4](https://github.com/HumanDynamics/LegalPhysics/issues/4).
 
 The process to establish when there is a good fit comes up a lot and I use a "Business, Legal and Technical" analysis to accomplish a quick sweep of the issues/options.  Since Nader was able to get a meeting today on this topic with the researcher and there is apparently a dialog about a potential collaboration, I am using the opportunity to write down the approach.  Eventually I want to reduce these and other factors to a form or wizard tool for use when doing "team formation" in my mass-scale MOOC and Personal Media Platform projects.  For now, here is a quick and dirty example of the method and a rough initial demo of how it surfaces issues or options as seen from business, legal and technical vantage points:  
 
