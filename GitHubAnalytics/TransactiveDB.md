@@ -1,7 +1,8 @@
-# Context: Potential Fit of Transactive DB with this Research
+# Potential Fit of Transactive DB with this Research
 
-Basic context on Michele Catasta and MIT Human Dynamics Lab: Michele Catasta presented to the Human Dynamics resarch team this summer.  His presence at the Media Lab may be a good opportunity to explore potential collaboration.  Following up, Nader took the initiative to have a brainstorming meting with Michele on August 12 about potential collaboration.  The following notes reflect Nader's write up and below that is a draft analysis of the fit using a business, legal and technical lens.  
+Basic context on resarcher Michele Catasta and MIT Human Dynamics Lab: Michele Catasta presented to the Human Dynamics resarch team this summer.  His presence at the Media Lab may be a good opportunity to explore potential collaboration.  Following up, Nader took the initiative to have a brainstorming meting with Michele on August 12 about potential collaboration. 
 
+All things being equal, collaboration with more researchers can be good and result in better outcomes. This write up examines wheter the fit of Transactive DB is well tuned for this resarch project.  Members of this collaboration team are invited to share questions, comments, etc on [Issue #4](https://github.com/HumanDynamics/LegalPhysics/issues/4).
 
 ## Transactive DB Also Focuses on GitHub
 
@@ -15,13 +16,9 @@ The following blurb is from an email shared by Nader (to? from?) Michele regardi
 
 Transactive DB functions as an automated and iterative system that can push queries to the person most appropriate for answering the query. It leverages transaction data to push queries to the asker's most relevant potential answerer. As I see it, this can be very useful as a function within the GitHub API - i.e. a system that pushes issue tickets to the most relevant answering party based on transaction data, AND analytics that our group plans to perform with GitHub and O*Net 
 
-<a href=http://exascale.info/papers/TransactiveDB.pdf>TransactiveDB Paper<a/>
-
 # BLT Initial Analysis of Potential Fit of this Research Project
 
 **Intro**
-
-Overall, I think it's great to reach out to more potential partners and see what if any fit there may be.  The worst that happens is probably just a little wasted time but even in that case we all learn more about other research and researchers which may be a good fit for future projects.  Members of this collaboration team are invited to share questions, comments, etc on [Issue #4](https://github.com/HumanDynamics/LegalPhysics/issues/4).
 
 The process to establish when there is a good fit comes up a lot and I use a "Business, Legal and Technical" analysis to accomplish a quick sweep of the issues/options.  Since Nader was able to get a meeting today on this topic with the researcher and there is apparently a dialog about a potential collaboration, I am using the opportunity to write down the approach.  Eventually I want to reduce these and other factors to a form or wizard tool for use when doing "team formation" in my mass-scale MOOC and Personal Media Platform projects.  For now, here is a quick and dirty example of the method and a rough initial demo of how it surfaces issues or options as seen from business, legal and technical vantage points:  
 
@@ -64,3 +61,7 @@ I do not yet understand how far along this Transactive DB project is now and whe
 I am still unclear on exactly what insights or analytics would be yielded from this Transactive DB or who those would relate to this research project.  It almost sounds like the Transactive DB project assumes that users are interacting with the DB while they work and those interactions result in triggering issues and other data.  If that is the case, then the broadscale analytics that span all users of GitHub would be apparently a poor fit until and unless all users of GitHub use Transactive DB.  If there is a large cluster of users who currently use this DB project then perhaps the population is large or otherwise interesting enough to warrant some sort of play in the scope of research being considered now.  
 
 On the other hand, if this Transactive DB approach can easily and quickly be applied retroactively in some way to a population of GitHub users and repositories and activities, etc there may be a more obvious relevance of the project to the data science approach, timing and scope of this research project.  If anybody has more info on this, please share it.  I will also take this up directly with the researcher once I connect with him. 
+
+# Next Steps:
+
+I will check in with the researcher to get more context and I'd be pleased to hear the views of others (see Issue #4).  If it turns out that Transactive DB is not a great fit at this time for any reason, but there is a good fit for collaboration with the researcher, then I'd like to extend an invitation to Michele Catasta to jump in to our resarch project and help complete an initial analysis of GitHub API data to explore patterns related to skill learning and productivity.  
