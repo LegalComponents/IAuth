@@ -1,4 +1,4 @@
 # IAuth
 Legal research team repository
 
-See: http://humandynamics.github.io/IAuth
+See: http://iauth.github.io/IAuth
