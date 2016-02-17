@@ -35,3 +35,12 @@ Some ideas for alpha step to start this project:
 ** first step is just make a single file with the account # per user and add the profile and account info all into the same single file. Keep it simple.
 
 ** next steps: pull the name and link to profile from the IDP so we can add user name from GitHub and Google business apps email or gmail from Google.
+
+
+# Further Notes on Code Development Approach
+
+It is an basic library/ set of code to manage online identity in a better way.
+
+It gives you a complete view of all the Identity Service Providers (IDP) that you have connected to the service and list of all the scopes that you have currently authorized with each respective service.
+
+It also provides you the freedom to revoke access to an IDP that you have already connected. This way you are in total control of what the service can access and not.
