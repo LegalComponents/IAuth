@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  div(class="container")
+    div(class="row")
+      div(class="col s6 center-align")
+        div(class="row")
+          p ID: #{user.id}
+        div(class="row")
+          p Username: #{user.username}
+        div(class="row")
+          p Name: #{user.displayName}
+        div(class="row")
+          p Email: #{user.emails[0].value}
+
+
+        
