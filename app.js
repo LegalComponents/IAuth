@@ -1,174 +1,142 @@
+/**
+ * Module dependencies.
+ */
 var express = require('express');
-var util = require('util');
+var cookieParser = require('cookie-parser');
+var compress = require('compression');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var logger = require('morgan');
+var errorHandler = require('errorhandler');
+var lusca = require('lusca');
 var methodOverride = require('method-override');
-var partials = require('express-partials');
-
-// ===== config vars
-var GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
-var GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
-var GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-var GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-var HOST = process.env.HOST;
-
-// ===== login OAuth2 =>https://github.com/cfsghost/passport-github
+var dotenv = require('dotenv');
+var MongoStore = require('connect-mongo/es5')(session);
+var flash = require('express-flash');
+var path = require('path');
+var mongoose = require('mongoose');
 var passport = require('passport');
-var GitHubStrategy = require('passport-github2').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var expressValidator = require('express-validator');
+var sass = require('node-sass-middleware');
+var multer = require('multer');
+var upload = multer({ dest: path.join(__dirname, 'uploads') });
 
-// Passport session setup.
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
+/**
+ * Load environment variables from .env file, where API keys and passwords are configured.
+ *
+ * Default path: .env (You can remove the path argument entirely, after renaming `.env.example` to `.env`)
+ */
+// dotenv.load({ path: '.env.example' });
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
+/**
+ * Controllers (route handlers).
+ */
+var homeController = require('./controllers/home');
+var userController = require('./controllers/user');
 
+/**
+ * API keys and Passport configuration.
+ */
+var passportConfig = require('./config/passport');
 
-// Use the GitHubStrategy within Passport.
-passport.use(new GitHubStrategy({
-    clientID: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: HOST+"/auth/github/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
-      return done(null, profile);
-    });
-  }
-));
-
-passport.use(new GoogleStrategy({
-    clientID: GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: HOST+"/auth/google/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      return done(null, profile);
-    });
-  }
-));
-
-// Simple route middleware to ensure user is authenticated.
-//   Use this route middleware on any resource that needs to be protected.  If
-//   the request is authenticated (typically via a persistent login session),
-//   the request will proceed.  Otherwise, the user will be redirected to the
-//   login page.
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
-}
-
-// ===== initialize app
+/**
+ * Create Express server.
+ */
 var app = express();
-app.set('port', (process.env.PORT || 3000));
 
-// ===== configure Express
-app.set('views', __dirname + '/views');
+/**
+ * Connect to MongoDB.
+ */
+mongoose.connect(process.env.MONGODB || process.env.MONGOLAB_URI);
+mongoose.connection.on('error', function() {
+  console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
+  process.exit(1);
+});
+
+/**
+ * Express configuration.
+ */
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(partials());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(compress());
+app.use(sass({
+  src: path.join(__dirname, 'public'),
+  dest: path.join(__dirname, 'public'),
+  sourceMap: true
+}));
+app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressValidator());
 app.use(methodOverride());
+app.use(cookieParser());
 app.use(session({
-  secret: 'qwerty keyboard',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: 'auto' }
-}))
-// Initialize Passport!  Also use passport.session() middleware, to support
-// persistent login sessions (recommended).
+  resave: true,
+  saveUninitialized: true,
+  secret: process.env.SESSION_SECRET,
+  store: new MongoStore({
+    url: process.env.MONGODB || process.env.MONGOLAB_URI,
+    autoReconnect: true
+  })
+}));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(__dirname + '/public'));
+app.use(flash());
+app.use(function(req, res, next) {
+  if (req.path === '/api/upload') {
+    next();
+  } else {
+    lusca.csrf()(req, res, next);
+  }
+});
+app.use(lusca.xframe('SAMEORIGIN'));
+app.use(lusca.xssProtection(true));
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+app.use(function(req, res, next) {
+  if (/api/i.test(req.path)) {
+    req.session.returnTo = req.path;
+  }
+  next();
+});
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
-app.use(function res_locals(req, res, next) {
-  res.locals = {
-    user: req.user,
-  };
-  return next();
+/**
+ * Primary app routes.
+ */
+app.get('/', homeController.index);
+app.get('/login', userController.getLogin);
+app.get('/logout', userController.logout);
+app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
+app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
+app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
+app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+
+/**
+ * OAuth authentication routes. (Sign in)
+ */
+app.get('/auth/github', passport.authenticate('github'));
+app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), function(req, res) {
+  res.redirect('/');
+});
+app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
+  res.redirect('/');
 });
 
-function make_url(url){
-  return HOST+url
-}
-// ===== routes
+/**
+ * Error Handler.
+ */
+app.use(errorHandler());
 
-// GET /
-app.get('/', function(req, res){
-  res.render('index');
+/**
+ * Start Express server.
+ */
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
 });
 
-// GET /login
-app.get('/login', function(req, res){
-  if(req.user){res.redirect('/');}
-  res.render('login', { user: req.user });
-});
-
-// GET /auth/github
-app.get('/auth/github',
-  passport.authenticate('github', { scope: [ 'user:email' ] }),
-  function(req, res){
-    // The request will be redirected to GitHub for authentication, so this
-    // function will not be called.
-  });
-
-// GET /auth/google
-app.get('/auth/google',
-  passport.authenticate('google', { scope: [
-    'https://www.googleapis.com/auth/plus.login',
-    'https://www.googleapis.com/auth/plus.profile.emails.read' ] }),
-  function(req, res){
-    // The request will be redirected to Google for authentication, so this
-    // function will not be called.
-  });
-
-// GET /auth/github/callback
-app.get('/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
-  function(req, res, next) {
-    var user = req.user;
-    if(user){
-      // db.User.create({ name: user.displayName, email: user.emails[0].value});
-      res.redirect('/account');
-    }
-    else{
-      res.redirect('/login');
-    }
-  });
-
-// GET /auth/google/callback
-app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res, next) {
-    var user = req.user;
-    if(user){
-      // db.User.create({ name: user.displayName, email: user.emails[0].value}).error();
-      res.redirect('/account');
-    }
-    else{
-      res.redirect('/login');
-    }
-  });
-
-// GET /logout
-app.get('/logout',
-  function(req, res){
-    req.logout();
-    res.redirect('/');
-  });
-
-// GET /account
-app.get('/account',
-  ensureAuthenticated,
-  function(req, res){
-    res.render('account');
-  });
-
-app.listen( (process.env.PORT || 3000) , function(){
-  console.log('Express server listening on port ' + (process.env.PORT || 3000));
-});
+module.exports = app;

@@ -1,23 +1,52 @@
 {
-  "name": "iAuth",
-  "version": "0.0.0",
-  "private": true,
+  "name": "iauth",
+  "version": "3.4.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LegalComponents/IAuth"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js",
+    "test": "mocha --reporter spec --timeout 5000"
   },
   "dependencies": {
-    "body-parser": "~1.13.2",
-    "cookie-parser": "~1.3.5",
-    "debug": "~2.2.0",
-    "express": "~4.13.1",
-    "express-partials": "^0.3.0",
+    "async": "^1.5.2",
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.15.0",
+    "compression": "^1.6.1",
+    "connect-assets": "^5.1.0",
+    "connect-mongo": "^1.1.0",
+    "cookie-parser": "^1.4.1",
+    "dotenv": "^2.0.0",
+    "errorhandler": "^1.4.3",
+    "express": "^4.13.4",
+    "express-flash": "^0.0.2",
     "express-session": "^1.13.0",
-    "jade": "~1.11.0",
+    "express-validator": "^2.19.1",
+    "github-api": "^0.11.2",
+    "jade": "^1.11.0",
+    "lob": "^3.8.0",
+    "lodash": "^4.4.0",
+    "lusca": "^1.3.0",
     "method-override": "^2.3.5",
-    "morgan": "~1.6.1",
-    "passport": "^0.3.2",
-    "passport-github2": "^0.1.9",
-    "passport-google-oauth20": "^1.0.0",
-    "serve-favicon": "~2.3.0"
-  }
+    "mongoose": "^4.4.3",
+    "morgan": "^1.6.1",
+    "multer": "^1.1.0",
+    "node-sass-middleware": "^0.9.7",
+    "passport": "0.3.2",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-oauth": "^1.0.0",
+    "request": "^2.69.0",
+    "validator": "^4.8.0"
+  },
+  "devDependencies": {
+    "blessed": "^0.1.81",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "multiline": "^1.0.2",
+    "supertest": "^1.2.0"
+  },
+  "license": "MIT"
 }
