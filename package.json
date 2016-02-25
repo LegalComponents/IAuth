@@ -23,6 +23,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.13.0",
     "express-validator": "^2.19.1",
+    "fs-extra": "^0.26.5",
     "github-api": "^0.11.2",
     "jade": "^1.11.0",
     "lob": "^3.8.0",

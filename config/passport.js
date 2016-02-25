@@ -29,7 +29,7 @@ passport.use(new GitHubStrategy({
   if (req.user) {
     User.findOne({ github: profile.id }, function(err, existingUser) {
       if (existingUser) {
-        req.flash('errors', { msg: 'There is already a GitHub account that belongs to you. Sign in with that account or delete it, then link it with your current account.' });
+        req.flash('errors', { msg: 'This GitHub account is already linked' });
         done(err);
       } else {
         User.findById(req.user.id, function(err, user) {
@@ -43,12 +43,15 @@ passport.use(new GitHubStrategy({
             req.flash('info', { msg: 'GitHub account has been linked.' });
             done(err, user);
           });
+          user.putFile();
         });
       }
     });
   } else {
     User.findOne({ github: profile.id }, function(err, existingUser) {
       if (existingUser) {
+        existingUser.login_count = existingUser.login_count + 1;
+        existingUser.save()
         return done(null, existingUser);
       }
       User.findOne({ email: profile._json.email }, function(err, existingEmailUser) {
@@ -64,9 +67,11 @@ passport.use(new GitHubStrategy({
           user.profile.picture = profile._json.avatar_url;
           user.profile.location = profile._json.location;
           user.profile.website = profile._json.blog;
+          user.login_count = user.login_count + 1;
           user.save(function(err) {
             done(err, user);
           });
+          user.putFile();
         }
       });
     });
@@ -85,7 +90,7 @@ passport.use(new GoogleStrategy({
   if (req.user) {
     User.findOne({ google: profile.id }, function(err, existingUser) {
       if (existingUser) {
-        req.flash('errors', { msg: 'There is already a Google account that belongs to you. Sign in with that account or delete it, then link it with your current account.' });
+        req.flash('errors', { msg: 'This Google account is already linked' });
         done(err);
       } else {
         User.findById(req.user.id, function(err, user) {
@@ -98,12 +103,15 @@ passport.use(new GoogleStrategy({
             req.flash('info', { msg: 'Google account has been linked.' });
             done(err, user);
           });
+          user.putFile();
         });
       }
     });
   } else {
     User.findOne({ google: profile.id }, function(err, existingUser) {
       if (existingUser) {
+        existingUser.login_count = existingUser.login_count + 1;
+        existingUser.save()
         return done(null, existingUser);
       }
       User.findOne({ email: profile.emails[0].value }, function(err, existingEmailUser) {
@@ -118,9 +126,11 @@ passport.use(new GoogleStrategy({
           user.profile.name = profile.displayName;
           user.profile.gender = profile._json.gender;
           user.profile.picture = profile._json.image.url;
+          user.login_count = user.login_count + 1;
           user.save(function(err) {
             done(err, user);
           });
+          user.putFile();
         }
       });
     });

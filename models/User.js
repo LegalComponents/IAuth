@@ -1,12 +1,12 @@
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 var mongoose = require('mongoose');
-
+var fs = require('fs-extra');
 var userSchema = new mongoose.Schema({
   email: { type: String, lowercase: true, unique: true },
-  password: String,
-  passwordResetToken: String,
-  passwordResetExpires: Date,
+
+  login_count: { type: Number, default: 0 },
+  active: {type: Boolean, default: true },
 
   google: String,
   github: String,
@@ -21,43 +21,16 @@ var userSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-/**
- * Password hash middleware.
- */
-userSchema.pre('save', function(next) {
-  var user = this;
-  if (!user.isModified('password')) {
-    return next();
-  }
-  bcrypt.genSalt(10, function(err, salt) {
-    if (err) {
-      return next(err);
-    }
-    bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if (err) {
-        return next(err);
-      }
-      user.password = hash;
-      next();
-    });
-  });
-});
-
-/**
- * Helper method for validating user's password.
- */
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    if (err) {
-      return cb(err);
-    }
-    cb(null, isMatch);
-  });
+userSchema.methods.putFile = function() {
+  var strJson = JSON.stringify( this.profile );
+  fs.writeFileSync('./profiles/'+this.email, strJson);
 };
 
-/**
- * Helper method for getting user's gravatar.
- */
+userSchema.methods.getFile = function() {
+  var strJson = fs.readFileSync('./profiles/'+this.email, strJson);
+  return strJson;
+};
+
 userSchema.methods.gravatar = function(size) {
   if (!size) {
     size = 200;

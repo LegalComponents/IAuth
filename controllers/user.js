@@ -65,12 +65,15 @@ exports.postUpdateProfile = function(req, res, next) {
  * Delete user account.
  */
 exports.postDeleteAccount = function(req, res, next) {
-  User.remove({ _id: req.user.id }, function(err) {
+  User.findById(req.user.id, function(err, user) {
     if (err) {
       return next(err);
     }
+    user.active = false;
+    user.tokens = [];
+    user.save();
     req.logout();
-    req.flash('info', { msg: 'Your account has been deleted.' });
+    req.flash('info', { msg: 'Your account has been deactivated.' });
     res.redirect('/');
   });
 };
