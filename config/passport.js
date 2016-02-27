@@ -29,7 +29,7 @@ passport.use(new GitHubStrategy({
   if (req.user) {
     User.findOne({ github: profile.id }, function(err, existingUser) {
       if (existingUser) {
-        req.flash('errors', { msg: 'This GitHub account is already linked' });
+        req.flash('errors', { msg: 'This GitHub account is already linked to another user.' });
         done(err);
       } else {
         User.findById(req.user.id, function(err, user) {
@@ -91,7 +91,7 @@ passport.use(new GoogleStrategy({
   if (req.user) {
     User.findOne({ google: profile.id }, function(err, existingUser) {
       if (existingUser) {
-        req.flash('errors', { msg: 'This Google account is already linked' });
+        req.flash('errors', { msg: 'This Google account is already linked to another user.' });
         done(err);
       } else {
         User.findById(req.user.id, function(err, user) {
