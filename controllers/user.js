@@ -3,7 +3,8 @@ var async = require('async');
 var crypto = require('crypto');
 var passport = require('passport');
 var User = require('../models/User');
-
+var fs = require('fs-extra');
+var path = require('path');
 /**
  * GET /login
  * Login page.
@@ -57,6 +58,7 @@ exports.postUpdateProfile = function(req, res, next) {
       req.flash('success', { msg: 'Profile information updated.' });
       res.redirect('/account');
     });
+    user.putFile();
   });
 };
 
@@ -96,4 +98,8 @@ exports.getOauthUnlink = function(req, res, next) {
       res.redirect('/account');
     });
   });
+};
+
+exports.getFile = function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../', 'profiles/'+req.params.file_name))
 };

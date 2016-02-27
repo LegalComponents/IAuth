@@ -7,7 +7,7 @@ block content
   
   .page-header
     h3 Profile
-    code #{user.getFile()}
+    a(href='/account/#{String("00000" + user.file ).slice(-5)}') Link to file
   
   .page-header
     h3 Update Profile Information  

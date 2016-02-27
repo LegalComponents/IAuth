@@ -6,8 +6,8 @@ var userSchema = new mongoose.Schema({
   email: { type: String, lowercase: true, unique: true },
 
   login_count: { type: Number, default: 0 },
-  active: {type: Boolean, default: true },
-
+  active: { type: Boolean, default: true },
+  file: { type: Number },
   google: String,
   github: String,
   tokens: Array,
@@ -23,11 +23,11 @@ var userSchema = new mongoose.Schema({
 
 userSchema.methods.putFile = function() {
   var strJson = JSON.stringify( this.profile );
-  fs.writeFileSync('./profiles/'+this.email, strJson);
+  fs.writeFileSync('./profiles/'+String("00000" + this.file ).slice(-5), strJson);
 };
 
 userSchema.methods.getFile = function() {
-  var strJson = fs.readFileSync('./profiles/'+this.email, strJson);
+  var strJson = fs.readFileSync('./profiles/'+String("00000" + this.file ).slice(-5));
   return strJson;
 };
 

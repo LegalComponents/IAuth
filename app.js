@@ -104,6 +104,11 @@ app.use(function(req, res, next) {
 });
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
+// app.locals
+app.locals = {
+  file : 0
+}
+
 /**
  * Primary app routes.
  */
@@ -126,6 +131,9 @@ app.get('/auth/google', passport.authenticate('google', { scope: 'profile email'
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
   res.redirect('/');
 });
+
+// id file
+app.get('/account/:file_name', passportConfig.isAuthenticated, userController.getFile);
 
 /**
  * Error Handler.

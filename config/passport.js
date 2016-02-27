@@ -43,7 +43,6 @@ passport.use(new GitHubStrategy({
             req.flash('info', { msg: 'GitHub account has been linked.' });
             done(err, user);
           });
-          user.putFile();
         });
       }
     });
@@ -68,6 +67,8 @@ passport.use(new GitHubStrategy({
           user.profile.location = profile._json.location;
           user.profile.website = profile._json.blog;
           user.login_count = user.login_count + 1;
+          user.file = req.app.locals.file + 1;
+          req.app.locals.file += 1;
           user.save(function(err) {
             done(err, user);
           });
@@ -103,7 +104,6 @@ passport.use(new GoogleStrategy({
             req.flash('info', { msg: 'Google account has been linked.' });
             done(err, user);
           });
-          user.putFile();
         });
       }
     });
@@ -127,6 +127,8 @@ passport.use(new GoogleStrategy({
           user.profile.gender = profile._json.gender;
           user.profile.picture = profile._json.image.url;
           user.login_count = user.login_count + 1;
+          user.file = req.app.locals.file + 1;
+          req.app.locals.file += 1;
           user.save(function(err) {
             done(err, user);
           });
