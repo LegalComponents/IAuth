@@ -40,6 +40,7 @@ passport.use(new GitHubStrategy({
           user.profile.location = user.profile.location || profile._json.location;
           user.profile.website = user.profile.website || profile._json.blog;
           user.save(function(err) {
+            user.putFile();
             req.flash('info', { msg: 'GitHub account has been linked.' });
             done(err, user);
           });
@@ -68,6 +69,7 @@ passport.use(new GitHubStrategy({
           user.profile.website = profile._json.blog;
           user.login_count = user.login_count + 1;
           user.file = req.app.locals.file + 1;
+          user.profile.profile_link = 'https://iauth.herokuapp.com/account/'+String("00000" + user.file ).slice(-5)+'.json'
           req.app.locals.file += 1;
           user.save(function(err) {
             done(err, user);
@@ -101,6 +103,7 @@ passport.use(new GoogleStrategy({
           user.profile.gender = user.profile.gender || profile._json.gender;
           user.profile.picture = user.profile.picture || profile._json.image.url;
           user.save(function(err) {
+            user.putFile();
             req.flash('info', { msg: 'Google account has been linked.' });
             done(err, user);
           });
@@ -129,6 +132,7 @@ passport.use(new GoogleStrategy({
           user.login_count = user.login_count + 1;
           user.file = req.app.locals.file + 1;
           req.app.locals.file += 1;
+          user.profile.profile_link = 'https://iauth.herokuapp.com/account/'+String("00000" + user.file ).slice(-5)+'.json'
           user.save(function(err) {
             done(err, user);
           });

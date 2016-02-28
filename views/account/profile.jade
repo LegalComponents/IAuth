@@ -3,11 +3,41 @@ extends ../layout
 block content
   
   .page-header
+    h3 Manage Accounts
+    .form-horizontal
+      .form-group
+
+        h4.col-sm-offset-0.col-sm-12 IAuth UnWorkshop and You <strong>#{user.profile.name}</strong> agree to the following:<br>
+        p.col-sm-offset-0.col-sm-12 <strong>No Breaking Laws</strong> Neither UnWorkshop nor You, #{user.profile.name} will be breaking laws as part of providing using this service
+        p.col-sm-offset-0.col-sm-12 <strong>Authorizations</strong> We agree to the following authorizations:
+        .col-sm-offset-3.col-sm-4
+        
+        if user.google
+          h4.col-sm-offset-0.col-sm-12 Google
+          p.col-sm-offset-0.col-sm-12 You have authorized Google to allow IAuth Workshop to:
+          p.col-sm-offset-1.col-sm-12 <strong>View your email address</strong> and <strong>View your basic profile info</strong>
+          p.col-sm-offset-1.col-sm-6
+            a.text-danger(href='/account/unlink/google') Unauthorize your Google account
+
+          p.col-sm-offset-0.col-sm-12 IAuth UnWorkshop and Google use your information in accordance with their respective terms of service and privacy policies. You can change this and other Account Permissions at any time.
+        
+        if user.github
+          h4.col-sm-offset-0.col-sm-12 Github
+          p.col-sm-offset-0.col-sm-12 You have authorized GitHub to allow IAuth Workshop to:
+          p.col-sm-offset-1.col-sm-12 <strong>identify you</strong>, and <strong>read public information</strong>
+          p.col-sm-offset-1.col-sm-6
+            a.text-danger(href='/account/unlink/github') Unauthorize your GitHub account
+
+          p.col-sm-offset-0.col-sm-12 IAuth UnWorkshop and GitHub use your information in accordance with their respective terms of service and privacy policies. You can change this and other Account Permissions at any time.
+
+        p.col-sm-offset-0.col-sm-12 IAuth UnWorkshop uses third party services for you to login and integrate other apps. These authorizations are basic parts of how IAuth works to enable UnWorkshop app. IAuth and the third party services use your information in accordance with the respective terms of service and privacy policies. You can change or revoke the authorization at any time.
+
+  .page-header
     h3 Login Count: #{user.login_count}
   
   .page-header
     h3 Profile
-    a(href='/account/#{String("00000" + user.file ).slice(-5)}') '/account/#{String("00000" + user.file ).slice(-5)}'
+    a(href='/account/#{String("00000" + user.file ).slice(-5)}.json') '/account/#{String("00000" + user.file ).slice(-5)}.json'
   
   .page-header
     h3 Update Profile Information  
@@ -46,6 +76,18 @@ block content
           | Update Profile
 
   .page-header
+    h3 Add Accounts
+  .form-horizontal
+    .form-group
+      if !user.google
+        p.col-sm-offset-1.col-sm-6
+          a(href='/auth/google') Authorize your Google account
+      
+      if !user.github
+        p.col-sm-offset-1.col-sm-6
+          a(href='/auth/github') Authorize your GitHub account
+
+  .page-header
     h3 Deactivate Account
 
   form.form-horizontal(action='/account/delete', method='POST')
@@ -56,47 +98,3 @@ block content
         button.btn.btn-danger(type='submit')
           i.fa.fa-trash
           | Deactivate my account
-
-  .page-header
-    h3 Manage Accounts
-  .form-horizontal
-    .form-group
-      h4.col-sm-offset-0.col-sm-12 IAuth UnWorkshop and You <strong>#{user.profile.name}</strong> agree to the following:<br>
-      p.col-sm-offset-0.col-sm-12 <strong>No Breaking Laws</strong> Neither UnWorkshop nor You, #{user.profile.name} will be breaking laws as part of providing using this service
-      p.col-sm-offset-0.col-sm-12 <strong>Authorizations</strong> We agree to the following authorizations:
-      .col-sm-offset-3.col-sm-4
-      
-      h4.col-sm-offset-0.col-sm-12 Google
-      if user.google
-        p.col-sm-offset-0.col-sm-12 You have authorized Google to allow IAuth Workshop to:
-      else
-        p.col-sm-offset-0.col-sm-12 You will authorized Google to allow IAuth Workshop to:
-      p.col-sm-offset-1.col-sm-12 <strong>View your email address</strong> and <strong>View your basic profile info</strong>
-      if user.google
-        p.col-sm-offset-1.col-sm-6
-          a.text-danger(href='/account/unlink/google') Unauthorize your Google account
-      else
-        p.col-sm-offset-1.col-sm-6
-          a(href='/auth/google') Authorize your Google account
-      p.col-sm-offset-0.col-sm-12 IAuth UnWorkshop and Google use your information in accordance with their respective terms of service and privacy policies. You can change this and other Account Permissions at any time.
-      .col-sm-offset-3.col-sm-4
-      
-      h4.col-sm-offset-0.col-sm-12 Github
-      if user.github
-        p.col-sm-offset-0.col-sm-12 You have authorized GitHub to allow IAuth Workshop to:
-      else
-        p.col-sm-offset-0.col-sm-12 You will authorized Github to allow IAuth Workshop to:
-      p.col-sm-offset-1.col-sm-12 <strong>identify you</strong>, and <strong>read public information</strong>
-      if user.github
-        p.col-sm-offset-1.col-sm-6
-          a.text-danger(href='/account/unlink/github') Unauthorize your GitHub account
-      else
-        p.col-sm-offset-1.col-sm-6
-          a(href='/auth/github') Authorize your GitHub account
-      p.col-sm-offset-0.col-sm-12 IAuth UnWorkshop and GitHub use your information in accordance with their respective terms of service and privacy policies. You can change this and other Account Permissions at any time.
-      .col-sm-offset-3.col-sm-4
-      
-    .page-header
-      h3
-    .form-horizontal
-    p.col-sm-offset-0.col-sm-12 IAuth UnWorkshop uses third party services for you to login and integrate other apps. These authorizations are basic parts of how IAuth works to enable UnWorkshop app. IAuth and the third party services use your information in accordance with the respective terms of service and privacy policies. You can change or revoke the authorization at any time.

@@ -17,17 +17,31 @@ var userSchema = new mongoose.Schema({
     gender: { type: String, default: '' },
     location: { type: String, default: '' },
     website: { type: String, default: '' },
-    picture: { type: String, default: '' }
+    picture: { type: String, default: '' },
+    profile_link: {type: String, default: '' },
+    accounts: {
+      google: { type: Boolean, default: false},
+      github: { type: Boolean, default: false}
+    }
   }
 }, { timestamps: true });
 
 userSchema.methods.putFile = function() {
+  if(this.google)
+    this.profile.accounts.google = true
+  else
+    this.profile.accounts.google = false
+  if(this.github)
+    this.profile.accounts.github = true
+  else
+    this.profile.accounts.github = false
+
   var strJson = JSON.stringify( this.profile );
-  fs.writeFileSync('./profiles/'+String("00000" + this.file ).slice(-5), strJson);
+  fs.writeFileSync('./profiles/'+String("00000" + this.file ).slice(-5)+'.json', strJson);
 };
 
 userSchema.methods.getFile = function() {
-  var strJson = fs.readFileSync('./profiles/'+String("00000" + this.file ).slice(-5));
+  var strJson = fs.readFileSync('./profiles/'+String("00000" + this.file).slice(-5)+'.json');
   return strJson;
 };
 
