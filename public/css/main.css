@@ -8826,4 +8826,23 @@ textarea {
 .fa {
   margin-right: 6px; }
 
+.card-title {
+  margin-top: .1rem;
+  margin-bottom: .1rem; }
+
+.jumbotron {
+  background-color: #f4f5fb; }
+
+.fixed {
+  position: fixed; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.profile .page-header {
+  margin-top: 70px; }
+
 /*# sourceMappingURL=main.css.map */

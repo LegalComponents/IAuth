@@ -25,10 +25,9 @@
               else
                 img(src='#{user.gravatar(60)}')
               | #{user.profile.name || user.email || user.id}&nbsp;
-              i.caret
             ul.dropdown-menu
               li
-                a(href='/account') My Account
+                a(href='/account') My Accounts
               li.divider
               li
                 a(href='/logout') Logout

@@ -26,7 +26,7 @@ var upload = multer({ dest: path.join(__dirname, 'uploads') });
  *
  * Default path: .env (You can remove the path argument entirely, after renaming `.env.example` to `.env`)
  */
-// dotenv.load({ path: '.env.example' });
+dotenv.load({ path: '.env' });
 
 /**
  * Controllers (route handlers).
@@ -108,6 +108,15 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 app.locals = {
   file : 0
 }
+
+/**
+ * Add routes to js and css folders
+ */
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
+app.use('/js', express.static(__dirname + '/public/js')); // redirect public JS
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
+app.use('/css', express.static(__dirname + '/public/css')); // redirect public CSS
 
 /**
  * Primary app routes.

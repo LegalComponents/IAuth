@@ -69,3 +69,38 @@ textarea {
 .fa {
   margin-right: 6px;
 }
+
+
+// Cards
+// -------------------------
+
+.card-title {
+  margin-top: .1rem;
+  margin-bottom: .1rem;
+}
+
+
+// Jumbotron
+// -------------------------
+.jumbotron {
+  background-color: #f4f5fb;
+}
+
+
+// Alignment and position
+// -------------------------
+.fixed {
+  position: fixed;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+
+// PAGE SPECIFIC
+// -------------------------
+.profile .page-header {
+  margin-top: 70px;
+}
