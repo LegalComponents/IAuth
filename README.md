@@ -27,7 +27,7 @@ The easiest way to get started is to clone the repository:
 
 ```bash
 # Get the latest snapshot
-git clone --depth=1 https://github.com/LegalComponents/IAuth
+git clone --depth 1 -b iauth_app  https://github.com/LegalComponents/IAuth
 
 # Change directory
 cd IAuth

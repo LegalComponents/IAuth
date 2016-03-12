@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1 iAuth
-  p A lowest common identity module that works across boundaries for individual control of personal data and authorization permissions management.
+
+	.jumbotron
+		h1.display-3 iAuth
+		p.lead A lowest common identity module that works across boundaries for individual control of personal data and authorization permissions management.
+
+		hr.m-y-2
+		
+		if !user		
+			p.lead
+				<a class="btn btn-primary btn-lg" href="login" role="button">Sign in now using your existing accounts</a>
+		else
+			p.lead
+				<a class="btn btn-primary btn-lg" href="account" role="button">Manage your accounts</a>
