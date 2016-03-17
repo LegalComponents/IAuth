@@ -1,7 +1,7 @@
 # IAuth
 Legal research team repository
 
-See: http://iauth.github.io/IAuth
+See: http://legalcomponents.github.io/IAuth/Alpha4/
 
 Project Concept: Create lowest common identity module for account that works across boundaries for individual control of personal data and authorization permissions management.  
 
