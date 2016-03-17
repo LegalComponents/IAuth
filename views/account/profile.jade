@@ -1,100 +1,112 @@
 extends ../layout
 
 block content
-  
-  .page-header
-    h3 Manage Accounts
-    .form-horizontal
-      .form-group
-
-        h4.col-sm-offset-0.col-sm-12 IAuth UnWorkshop and You <strong>#{user.profile.name}</strong> agree to the following:<br>
-        p.col-sm-offset-0.col-sm-12 <strong>No Breaking Laws</strong> Neither UnWorkshop nor You, #{user.profile.name} will be breaking laws as part of providing using this service
-        p.col-sm-offset-0.col-sm-12 <strong>Authorizations</strong> We agree to the following authorizations:
-        .col-sm-offset-3.col-sm-4
-        
-        if user.google
-          h4.col-sm-offset-0.col-sm-12 Google
-          p.col-sm-offset-0.col-sm-12 You have authorized Google to allow IAuth Workshop to:
-          p.col-sm-offset-1.col-sm-12 <strong>View your email address</strong> and <strong>View your basic profile info</strong>
-          p.col-sm-offset-1.col-sm-6
-            a.text-danger(href='/account/unlink/google') Unauthorize your Google account
-
-          p.col-sm-offset-0.col-sm-12 IAuth UnWorkshop and Google use your information in accordance with their respective terms of service and privacy policies. You can change this and other Account Permissions at any time.
-        
-        if user.github
-          h4.col-sm-offset-0.col-sm-12 Github
-          p.col-sm-offset-0.col-sm-12 You have authorized GitHub to allow IAuth Workshop to:
-          p.col-sm-offset-1.col-sm-12 <strong>identify you</strong>, and <strong>read public information</strong>
-          p.col-sm-offset-1.col-sm-6
-            a.text-danger(href='/account/unlink/github') Unauthorize your GitHub account
-
-          p.col-sm-offset-0.col-sm-12 IAuth UnWorkshop and GitHub use your information in accordance with their respective terms of service and privacy policies. You can change this and other Account Permissions at any time.
-
-        p.col-sm-offset-0.col-sm-12 IAuth UnWorkshop uses third party services for you to login and integrate other apps. These authorizations are basic parts of how IAuth works to enable UnWorkshop app. IAuth and the third party services use your information in accordance with the respective terms of service and privacy policies. You can change or revoke the authorization at any time.
-
-  .page-header
-    h3 Login Count: #{user.login_count}
-  
-  .page-header
-    h3 Profile
-    a(href='/account/#{String("00000" + user.file ).slice(-5)}.json') '/account/#{String("00000" + user.file ).slice(-5)}.json'
-  
-  .page-header
-    h3 Update Profile Information  
-
-  form.form-horizontal(action='/account/profile', method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    .form-group
-      label.col-sm-3.control-label(for='email') Email
-      .col-sm-7
-        input.form-control(type='email', name='email', id='email', value='#{user.email}')
-    .form-group
-      label.col-sm-3.control-label(for='name') Name
-      .col-sm-7
-        input.form-control(type='text', name='name', id='name', value='#{user.profile.name}')
-    .form-group
-      label.col-sm-3.control-label(for='gender') Gender
-      .col-sm-4
-        label.radio.col-sm-4
-          input(type='radio', checked=user.profile.gender=='male', name='gender', value='male', data-toggle='radio')
-          span Male
-        label.radio.col-sm-4
-          input(type='radio', checked=user.profile.gender=='female', name='gender', value='female', data-toggle='radio')
-          span Female
-    .form-group
-      label.col-sm-3.control-label(for='location') Location
-      .col-sm-7
-        input.form-control(type='text', name='location', id='location', value='#{user.profile.location}')
-    .form-group
-      label.col-sm-3.control-label(for='website') Website
-      .col-sm-7
-        input.form-control(type='text', name='website', id='website', value='#{user.profile.website}')
-    .form-group
-      .col-sm-offset-3.col-sm-4
-        button.btn.btn.btn-primary(type='submit')
-          i.fa.fa-pencil
-          | Update Profile
-
-  .page-header
-    h3 Add Accounts
-  .form-horizontal
-    .form-group
-      if !user.google
-        p.col-sm-offset-1.col-sm-6
-          a(href='/auth/google') Authorize your Google account
+  div(class="container-fluid")
+    div(class="card")
+      div(class="card-header")
+        h3 Manage Accounts
       
-      if !user.github
-        p.col-sm-offset-1.col-sm-6
-          a(href='/auth/github') Authorize your GitHub account
+      div(class="card-block")
+        div(class="card")
+          div(class="card-header")
+            h4(class="card-text") IAuth UnWorkshop and You <strong>#{user.profile.name}</strong> agree to the following:<br>
+          div(class="card-block")
+            p(class="card-text") <strong>No Breaking Laws</strong> Neither UnWorkshop nor You, #{user.profile.name} will be breaking laws as part of providing using this service
+            p(class="card-text") <strong>Authorizations</strong> We agree to the following authorizations:
+      
+        if user.google
+          div(class="card")
+            div(class="card-block")
+              h4(class="card-title") Google
+              p(class="card-text") You have authorized Google to allow IAuth Workshop to:
+              p(class="card-text") <strong>View your email address</strong> and <strong>View your basic profile info</strong>
+              a(href="/account/unlink/google", class="btn btn-danger") Unauthorize your Google account
+            div(class="card-footer text-muted")
+              p IAuth UnWorkshop and Google use your information in accordance with their respective terms of service and privacy policies. You can change this and other Account Permissions at any time.
+      
+        if user.github
+          div(class="card")
+            div(class="card-block")
+              h4(class="card-title") Github
+              p(class="card-text") You have authorized GitHub to allow IAuth Workshop to:
+              p(class="card-text") <strong>identify you</strong>, and <strong>read public information</strong>
+              a(href="/account/unlink/github", class="btn btn-danger") Unauthorize your GitHub account
+            div(class="card-footer text-muted")
+              p IAuth UnWorkshop and GitHub use your information in accordance with their respective terms of service and privacy policies. You can change this and other Account Permissions at any time.
+      
+        div(class="card")
+          div(class="card-footer")
+            p IAuth UnWorkshop uses third party services for you to login and integrate other apps. These authorizations are basic parts of how IAuth works to enable UnWorkshop app. IAuth and the third party services use your information in accordance with the respective terms of service and privacy policies. You can change or revoke the authorization at any time.
 
-  .page-header
-    h3 Deactivate Account
+  div(class="container-fluid")
+    div(class="card")
+      div(class="card-block")
+        h3 Login Count: #{user.login_count}
+  
+  div(class="container-fluid")
+    div(class="card")
+      div(class="card-header")
+        h3 Profile
+      div(class="card-block")
+        a(href='/account/#{String("00000" + user.file ).slice(-5)}.json') '/account/#{String("00000" + user.file ).slice(-5)}.json'
+  
+  div(class="container-fluid")
+    div(class="card")
+      div(class="card-header")
+        h3 Update Profile Information  
 
-  form.form-horizontal(action='/account/delete', method='POST')
-    .form-group
-      p.col-sm-offset-3.col-sm-4 You can deactivate your account.
-      input(type='hidden', name='_csrf', value=_csrf)
-      .col-sm-offset-3.col-sm-4
-        button.btn.btn-danger(type='submit')
-          i.fa.fa-trash
-          | Deactivate my account
+      div(class="card-block")
+        form.form-horizontal(action='/account/profile', method='POST')
+          input(type='hidden', name='_csrf', value=_csrf)
+          .form-group
+            label.col-sm-3.control-label(for='email') Email
+            .col-sm-7
+              input.form-control(type='email', name='email', id='email', value='#{user.email}')
+          .form-group
+            label.col-sm-3.control-label(for='name') Name
+            .col-sm-7
+              input.form-control(type='text', name='name', id='name', value='#{user.profile.name}')
+          .form-group
+            label.col-sm-3.control-label(for='gender') Gender
+            .col-sm-4
+              label.radio.col-sm-4
+                input(type='radio', checked=user.profile.gender=='male', name='gender', value='male', data-toggle='radio')
+                span Male
+              label.radio.col-sm-4
+                input(type='radio', checked=user.profile.gender=='female', name='gender', value='female', data-toggle='radio')
+                span Female
+          .form-group
+            label.col-sm-3.control-label(for='location') Location
+            .col-sm-7
+              input.form-control(type='text', name='location', id='location', value='#{user.profile.location}')
+          .form-group
+            label.col-sm-3.control-label(for='website') Website
+            .col-sm-7
+              input.form-control(type='text', name='website', id='website', value='#{user.profile.website}')
+          .form-group
+            .col-sm-offset-3.col-sm-4
+              button.btn.btn.btn-primary(type='submit')
+                i.fa.fa-pencil
+                | Update Profile
+
+  div(class="container-fluid")
+    div(class="card")
+      div(class="card-header")
+        h3 Add Accounts
+      div(class="card-block")
+        if !user.google
+          a(href='/auth/google', class="btn btn-primary") Authorize your Google account
+        
+        if !user.github
+          a(href='/auth/github', class="btn btn-primary") Authorize your GitHub account
+
+  div(class="container-fluid")
+    div(class="card")
+      div(class="card-header")
+        h3 Deactivate Account
+      div(class="card-block")
+        form(action='/account/delete', method='POST')
+            input(type='hidden', name='_csrf', value=_csrf)
+            button.btn.btn-danger(type='submit')
+              i.fa.fa-trash
+              | Deactivate my account
