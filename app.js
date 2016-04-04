@@ -127,7 +127,7 @@ app.get('/auth/github', passport.authenticate('github'));
 app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), function(req, res) {
   res.redirect('/');
 });
-app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
+app.get('/auth/google', passport.authenticate('google', { scope: 'profile email https://www.googleapis.com/auth/drive.file' }));
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
   res.redirect('/');
 });

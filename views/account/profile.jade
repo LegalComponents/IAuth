@@ -7,36 +7,15 @@ block content
         h3 Manage Accounts
       
       div(class="card-block")
-        div(class="card")
-          div(class="card-header")
-            h4(class="card-text") IAuth UnWorkshop and You <strong>#{user.profile.name}</strong> agree to the following:<br>
-          div(class="card-block")
-            p(class="card-text") <strong>No Breaking Laws</strong> Neither UnWorkshop nor You, #{user.profile.name} will be breaking laws as part of providing using this service
-            p(class="card-text") <strong>Authorizations</strong> We agree to the following authorizations:
+        include blox/user_agreement
       
         if user.google
-          div(class="card")
-            div(class="card-block")
-              h4(class="card-title") Google
-              p(class="card-text") You have authorized Google to allow IAuth Workshop to:
-              p(class="card-text") <strong>View your email address</strong> and <strong>View your basic profile info</strong>
-              a(href="/account/unlink/google", class="btn btn-danger") Unauthorize your Google account
-            div(class="card-footer text-muted")
-              p IAuth UnWorkshop and Google use your information in accordance with their respective terms of service and privacy policies. You can change this and other Account Permissions at any time.
+          include blox/google
       
         if user.github
-          div(class="card")
-            div(class="card-block")
-              h4(class="card-title") Github
-              p(class="card-text") You have authorized GitHub to allow IAuth Workshop to:
-              p(class="card-text") <strong>identify you</strong>, and <strong>read public information</strong>
-              a(href="/account/unlink/github", class="btn btn-danger") Unauthorize your GitHub account
-            div(class="card-footer text-muted")
-              p IAuth UnWorkshop and GitHub use your information in accordance with their respective terms of service and privacy policies. You can change this and other Account Permissions at any time.
+          include blox/github
       
-        div(class="card")
-          div(class="card-footer")
-            p IAuth UnWorkshop uses third party services for you to login and integrate other apps. These authorizations are basic parts of how IAuth works to enable UnWorkshop app. IAuth and the third party services use your information in accordance with the respective terms of service and privacy policies. You can change or revoke the authorization at any time.
+        include blox/footer
 
   div(class="container-fluid")
     div(class="card")
